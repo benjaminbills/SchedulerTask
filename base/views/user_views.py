@@ -45,6 +45,12 @@ def registerUser(request):
     return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+def getUsers(request):
+  users = NewUser.objects.all()
+  serializer = UserSerializer(users, many=True)
+  return Response({"user":serializer.data})
+
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getUserByID(request, pk):
   user = NewUser.objects.get(id=pk)

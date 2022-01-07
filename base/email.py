@@ -11,3 +11,14 @@ def send_reset_password_email(name, reciever, password):
   msg = EmailMultiAlternatives(subject,text_content,sender,[reciever])
   msg.attach_alternative(html_content,'text/html')
   msg.send()
+
+def send_happy_birthday(name, reciever):
+  # Creating message subject and sender
+  subject = 'Happy Birthday'
+  sender = 'oneobaben@gmail.com'
+  text_content = render_to_string('email/happybirthday.txt',{"name": name})
+  html_content = render_to_string('email/happybirthday.html',{"name": name})
+
+  msg = EmailMultiAlternatives(subject,text_content,sender,[reciever])
+  msg.attach_alternative(html_content,'text/html')
+  msg.send()
